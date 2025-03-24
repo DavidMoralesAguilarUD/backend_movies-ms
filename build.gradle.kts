@@ -28,6 +28,7 @@ dependencies {
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	compileOnly ("org.projectlombok:lombok")
 	annotationProcessor("org.projectlombok:lombok")
+	implementation("jakarta.inject:jakarta.inject-api:2.0.1")
 
 }
 

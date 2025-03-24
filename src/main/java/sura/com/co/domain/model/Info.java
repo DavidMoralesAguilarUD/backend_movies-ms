@@ -16,8 +16,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Document
 @Validated
+@Document(collection = "info")
 public class Info {
 
     @Id

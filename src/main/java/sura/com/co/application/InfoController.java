@@ -10,6 +10,7 @@ import sura.com.co.domain.model.Info;
 import sura.com.co.domain.service.InfoService;
 
 
+
 @RestController
 @RequestMapping("/v1")
 public class InfoController {
@@ -17,7 +18,6 @@ public class InfoController {
     private InfoService InfoService;
 
     public InfoController(InfoService infoService){
-
         this.InfoService = infoService;
     }
 
@@ -42,6 +42,7 @@ public class InfoController {
                 .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()))
                 .log();
     }
+
     @PostMapping("/infos")
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Info> addInfo(@RequestBody @Valid Info info){

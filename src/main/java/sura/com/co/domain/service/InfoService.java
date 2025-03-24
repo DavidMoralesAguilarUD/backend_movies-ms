@@ -10,13 +10,11 @@ import sura.com.co.domain.service.dependency.InfoRepository;
 public class InfoService {
     private InfoRepository infoRepository;
 
-    public InfoService(InfoRepository infoRepository) {
+    public InfoService(InfoRepository infoRepository ) {
         this.infoRepository = infoRepository;
     }
-
-    public Mono<Info> addInfo(Info info) {
-
-        return infoRepository.save(info);
+    public Flux<Info> getInfoByYear(Integer year) {
+        return infoRepository.findByYear(year);
     }
 
     public Flux<Info> getAllInfos() {
@@ -24,18 +22,26 @@ public class InfoService {
     }
 
     public Mono<Info> getInfoId(String id) {
-
         return infoRepository.findById(id);
+    }
+
+    public Mono<Info> addInfo(Info info) {
+        return infoRepository.save(info);
+    }
+
+
+    public Mono<Info> getInfoByName(String name) {
+        return infoRepository.findByName(name);
     }
 
     public Mono<Info> updateInfo(Info updatedInfo, String id) {
         return infoRepository.findById(id)
                 .flatMap(info -> {
-                   info.setCast(updatedInfo.getCast());
-                   info.setName(updatedInfo.getName());
-                   info.setRelease_date(updatedInfo.getRelease_date());
-                   info.setYear(updatedInfo.getYear());
-                   return infoRepository.save(info);
+                    info.setCast(updatedInfo.getCast());
+                    info.setName(updatedInfo.getName());
+                    info.setRelease_date(updatedInfo.getRelease_date());
+                    info.setYear(updatedInfo.getYear());
+                    return infoRepository.save(info);
                 });
 
     }
@@ -44,16 +50,5 @@ public class InfoService {
     public Mono<Info> deleteInfo(String id) {
         return infoRepository.findById(id);
 
-    }
-
-
-    public Flux<Info> getInfoByYear(Integer year) {
-        return infoRepository.findByYear(year);
-
-    }
-
-    public Mono<Info> getInfoByName(String name) {
-
-        return infoRepository.findByName(name);
     }
 }
